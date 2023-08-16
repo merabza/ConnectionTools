@@ -2,7 +2,8 @@
 using ConnectTools;
 using FTPTools;
 using Microsoft.Extensions.Logging;
-using SSHTools;
+
+//using SSHTools;
 
 namespace CToolsFabric;
 
@@ -17,7 +18,7 @@ public static class ConnectToolsFabric
         return uri.Scheme.ToLower() switch
         {
             "ftp" => new FtpTools(parameters, logger, useConsole),
-            "ssh" => new SshTools(parameters, logger),
+            //"ssh" => new SshTools(parameters, logger),
             _ => null
         };
     }

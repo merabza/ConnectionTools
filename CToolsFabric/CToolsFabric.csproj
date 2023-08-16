@@ -12,7 +12,6 @@
   <ItemGroup>
     <ProjectReference Include="..\ConnectTools\ConnectTools.csproj" />
     <ProjectReference Include="..\FTPTools\FTPTools.csproj" />
-    <ProjectReference Include="..\SSHTools\SSHTools.csproj" />
   </ItemGroup>
 
   <ItemGroup>
