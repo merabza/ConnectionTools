@@ -175,7 +175,7 @@ public sealed class FtpTools : CTools
         {
             //if (UseConsole)
             //    Console.WriteLine($"FTPTools UploadFile destination = {remoteFilePath}");
-            Logger.LogInformation($"FTPTools UploadFile destination = {remoteFilePath}");
+            Logger.LogInformation("FTPTools UploadFile destination = {remoteFilePath}", remoteFilePath);
 
             using var ftp = CreateFtpClient();
             ftp.Connect();
