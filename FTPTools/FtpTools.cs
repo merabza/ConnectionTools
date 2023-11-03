@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using ConnectTools;
 using FluentFTP;
 using Microsoft.Extensions.Logging;
+using Polly;
+using Polly.Retry;
 using SystemToolsShared;
 
 namespace FTPTools;
@@ -29,7 +32,8 @@ public sealed class FtpTools : CTools
         {
             var ftpClient = CreateFtpClient();
             ftpClient.Config.ConnectTimeout *= 256;
-            ftpClient.Connect();
+            //ftpClient.Connect();
+            MultiTryConnect(ftpClient);
             return true;
         }
         catch (Exception e)
@@ -38,6 +42,24 @@ public sealed class FtpTools : CTools
         }
 
         return false;
+    }
+
+    private void MultiTryConnect(IFtpClient ftpClient)
+    {
+        var pipeline = new ResiliencePipelineBuilder().AddRetry(new RetryStrategyOptions
+        {
+            MaxRetryAttempts = 3, BackoffType = DelayBackoffType.Linear, Delay = TimeSpan.FromSeconds(1),
+            ShouldHandle = new PredicateBuilder().Handle<IOException>(), OnRetry = retryArgs =>
+            {
+                Logger.LogError(retryArgs.Outcome.Exception,
+                    $"Ftp client Check Connection Failed. currentAttempt: {retryArgs.AttemptNumber}",
+                    retryArgs.AttemptNumber);
+                return ValueTask.CompletedTask;
+            }
+        }).Build();
+
+        pipeline.Execute(ftpClient.Connect);
+
     }
 
     public override bool DownloadFile(string? afterRootPath, string fileName, string folderToDownload,
@@ -53,7 +75,9 @@ public sealed class FtpTools : CTools
 
             using var ftp = CreateFtpClient();
 
-            ftp.Connect();
+            //ftp.Connect();
+            MultiTryConnect(ftp);
+
 
             /* For Progress use
              * Action<FtpProgress> progress = delegate(FtpProgress p){
@@ -87,7 +111,7 @@ public sealed class FtpTools : CTools
 
             using var ftp = CreateFtpClient();
 
-            ftp.Connect();
+            MultiTryConnect(ftp);
 
             try
             {
@@ -123,7 +147,7 @@ public sealed class FtpTools : CTools
 
 
             using var ftp = CreateFtpClient();
-            ftp.Connect();
+            MultiTryConnect(ftp);
 
             // open an write-only stream to the file
             //using var stream = ftp.OpenWrite(remoteFilePath);
@@ -178,7 +202,7 @@ public sealed class FtpTools : CTools
             Logger.LogInformation("FTPTools UploadFile destination = {remoteFilePath}", remoteFilePath);
 
             using var ftp = CreateFtpClient();
-            ftp.Connect();
+            MultiTryConnect(ftp);
 
             // upload a file to an existing FTP directory
             ftp.UploadFile(pathToFile, remoteFilePath);
@@ -202,7 +226,7 @@ public sealed class FtpTools : CTools
         var remoteFilePath = GetRemotePath(afterRootPath, fileName);
 
         using var conn = CreateFtpClient();
-        conn.Connect();
+        MultiTryConnect(conn);
 
         // The last parameter forces FluentFTP to use LIST -a 
         // for getting a list of objects in the parent directory.
@@ -214,7 +238,7 @@ public sealed class FtpTools : CTools
         var remoteFolderPath = GetRemotePath(afterRootPath, dirName);
 
         using var conn = CreateFtpClient();
-        conn.Connect();
+        MultiTryConnect(conn);
 
         // The last parameter forces FluentFTP to use LIST -a 
         // for getting a list of objects in the parent directory.
@@ -251,7 +275,7 @@ public sealed class FtpTools : CTools
             var remotePath = GetRemotePath(afterRootPath);
 
             using var conn = CreateFtpClient();
-            conn.Connect();
+            MultiTryConnect(conn);
 
             // get listing of the files & folders in a specific folder
             result.AddRange(conn.GetListing(remotePath)
@@ -282,7 +306,7 @@ public sealed class FtpTools : CTools
 
             using var ftp = CreateFtpClient();
 
-            ftp.Connect();
+            MultiTryConnect(ftp);
 
             ftp.DeleteFile(remoteFilePath);
 
@@ -303,7 +327,7 @@ public sealed class FtpTools : CTools
 
             using var ftp = CreateFtpClient();
 
-            ftp.Connect();
+            MultiTryConnect(ftp);
 
             ftp.DeleteDirectory(remoteDirName);
 
@@ -348,7 +372,7 @@ public sealed class FtpTools : CTools
 
             using var ftp = CreateFtpClient();
 
-            ftp.Connect();
+            MultiTryConnect(ftp);
 
             ftp.Rename(remoteFromFileName, remoteToFileName);
 
@@ -369,7 +393,7 @@ public sealed class FtpTools : CTools
 
             using var ftp = CreateFtpClient();
 
-            ftp.Connect();
+            MultiTryConnect(ftp);
 
             ftp.CreateDirectory(remoteFolderName);
 
