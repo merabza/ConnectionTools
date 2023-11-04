@@ -48,7 +48,9 @@ public sealed class FtpTools : CTools
     {
         var pipeline = new ResiliencePipelineBuilder().AddRetry(new RetryStrategyOptions
         {
-            MaxRetryAttempts = 3, BackoffType = DelayBackoffType.Linear, Delay = TimeSpan.FromSeconds(1),
+            MaxRetryAttempts = 3, 
+            BackoffType = DelayBackoffType.Linear, 
+            Delay = TimeSpan.FromSeconds(1),
             ShouldHandle = new PredicateBuilder().Handle<IOException>(), OnRetry = retryArgs =>
             {
                 Logger.LogError(retryArgs.Outcome.Exception,
