@@ -51,12 +51,13 @@ public sealed class FtpTools : CTools
             MaxRetryAttempts = 3, 
             BackoffType = DelayBackoffType.Linear, 
             Delay = TimeSpan.FromSeconds(1),
-            ShouldHandle = new PredicateBuilder().Handle<IOException>(), OnRetry = retryArgs =>
+            ShouldHandle = new PredicateBuilder().Handle<IOException>(), 
+            OnRetry = retryArgs =>
             {
                 Logger.LogError(retryArgs.Outcome.Exception,
                     $"Ftp client Check Connection Failed. currentAttempt: {retryArgs.AttemptNumber}",
                     retryArgs.AttemptNumber);
-                return ValueTask.CompletedTask;
+                return default;
             }
         }).Build();
 
