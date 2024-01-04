@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using ConnectTools;
 using FluentFTP;
 using Microsoft.Extensions.Logging;
@@ -54,11 +53,11 @@ public sealed class FtpTools : CTools
             ShouldHandle = new PredicateBuilder().Handle<IOException>(), 
             OnRetry = retryArgs =>
             {
-                Logger.LogError(retryArgs.Outcome.Exception,
-                    $"Ftp client Check Connection Failed. currentAttempt: {retryArgs.AttemptNumber}",
-                    retryArgs.AttemptNumber);
+                var attemptNumber = retryArgs.AttemptNumber;
+                Logger.LogError(retryArgs.Outcome.Exception, "Ftp client Check Connection Failed. currentAttempt: {attemptNumber}", attemptNumber);
                 return default;
-            }
+            },
+            
         }).Build();
 
         pipeline.Execute(ftpClient.Connect);
