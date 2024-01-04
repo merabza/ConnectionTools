@@ -47,21 +47,20 @@ public sealed class FtpTools : CTools
     {
         var pipeline = new ResiliencePipelineBuilder().AddRetry(new RetryStrategyOptions
         {
-            MaxRetryAttempts = 3, 
-            BackoffType = DelayBackoffType.Linear, 
+            MaxRetryAttempts = 3,
+            BackoffType = DelayBackoffType.Linear,
             Delay = TimeSpan.FromSeconds(1),
-            ShouldHandle = new PredicateBuilder().Handle<IOException>(), 
+            ShouldHandle = new PredicateBuilder().Handle<IOException>(),
             OnRetry = retryArgs =>
             {
                 var attemptNumber = retryArgs.AttemptNumber;
-                Logger.LogError(retryArgs.Outcome.Exception, "Ftp client Check Connection Failed. currentAttempt: {attemptNumber}", attemptNumber);
+                Logger.LogError(retryArgs.Outcome.Exception,
+                    "Ftp client Check Connection Failed. currentAttempt: {attemptNumber}", attemptNumber);
                 return default;
-            },
-            
+            }
         }).Build();
 
         pipeline.Execute(ftpClient.Connect);
-
     }
 
     public override bool DownloadFile(string? afterRootPath, string fileName, string folderToDownload,
