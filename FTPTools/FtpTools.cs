@@ -14,6 +14,7 @@ namespace FTPTools;
 
 public sealed class FtpTools : CTools
 {
+    // ReSharper disable once ConvertToPrimaryConstructor
     public FtpTools(ConnectToolParameters parameters, ILogger logger, bool useConsole = false) : base(parameters,
         logger, useConsole)
     {
