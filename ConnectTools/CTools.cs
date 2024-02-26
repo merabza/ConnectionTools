@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
 namespace ConnectTools;
@@ -101,6 +103,11 @@ public /*open*/ class CTools
         return false;
     }
 
+    public virtual Task<bool> UploadContentToTextFileAsync(string content, string? afterRootPath,
+        string serverSideFileName, CancellationToken cancellationToken)
+    {
+        return Task.FromResult(false);
+    }
 
     public virtual bool CreateServerSideUser(string companyName)
     {
