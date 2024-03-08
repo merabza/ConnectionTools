@@ -151,7 +151,7 @@ public sealed class FtpTools : CTools
             using var ftp = CreateFtpClient();
             MultiTryConnect(ftp);
 
-            // open an write-only stream to the file
+            // open a write-only stream to the file
             //using var stream = ftp.OpenWrite(remoteFilePath);
             try
             {
