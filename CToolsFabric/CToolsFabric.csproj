@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ConnectTools\ConnectTools.csproj" />
     <ProjectReference Include="..\FTPTools\FTPTools.csproj" />
   </ItemGroup>
 
