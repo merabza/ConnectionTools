@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
 using ConnectTools;
 using FluentFTP;
 using Microsoft.Extensions.Logging;
@@ -177,6 +179,15 @@ public sealed class FtpTools : CTools
             return false;
         }
     }
+
+    
+    public override Task<bool> UploadContentToTextFileAsync(string content, string? afterRootPath,
+        string serverSideFileName, CancellationToken cancellationToken)
+    {
+        return Task.FromResult(UploadContentToTextFile(content, afterRootPath, serverSideFileName));
+    }
+
+
 
     private string GetRemotePath(string? afterRootPath, string fileName)
     {
