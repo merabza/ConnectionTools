@@ -25,6 +25,7 @@ public sealed class FtpTools : CTools
 
     private FtpClient CreateFtpClient()
     {
+        // ReSharper disable once DisposableConstructor
         return new FtpClient(HostName, Parameters.UserName, Parameters.Password, Port);
     }
 
@@ -32,7 +33,8 @@ public sealed class FtpTools : CTools
     {
         try
         {
-            var ftpClient = CreateFtpClient();
+            // ReSharper disable once using
+            using var ftpClient = CreateFtpClient();
             ftpClient.Config.ConnectTimeout *= 256;
             //ftpClient.Connect();
             MultiTryConnect(ftpClient);
@@ -77,24 +79,10 @@ public sealed class FtpTools : CTools
             if (UseConsole)
                 Console.WriteLine($"Download file from {source} to {fileFullName}");
 
+            // ReSharper disable once using
             using var ftp = CreateFtpClient();
 
-            //ftp.Connect();
             MultiTryConnect(ftp);
-
-
-            /* For Progress use
-             * Action<FtpProgress> progress = delegate(FtpProgress p){
-                if (p.Progress == 1) {
-                    // all done!
-                }
-                else {
-                    // percent done = (p.Progress * 100)
-                }
-            };
-            // download a file with progress tracking
-            ftp.DownloadFile(@"D:\Github\FluentFTP\README.md", "/public_html/temp/README.md", FtpLocalExists.Overwrite, FtpVerify.None, progress);
-             */
 
             ftp.DownloadFile(fileFullName, source);
 
@@ -113,6 +101,7 @@ public sealed class FtpTools : CTools
         {
             var remoteFilePath = GetRemotePath(afterRootPath, fileName);
 
+            // ReSharper disable once using
             using var ftp = CreateFtpClient();
 
             MultiTryConnect(ftp);
@@ -150,6 +139,7 @@ public sealed class FtpTools : CTools
             var remoteFilePath = GetRemotePath(afterRootPath, serverSideFileName);
 
 
+            // ReSharper disable once using
             using var ftp = CreateFtpClient();
             MultiTryConnect(ftp);
 
@@ -214,6 +204,7 @@ public sealed class FtpTools : CTools
             //    Console.WriteLine($"FTPTools UploadFile destination = {remoteFilePath}");
             Logger.LogInformation("FTPTools UploadFile destination = {remoteFilePath}", remoteFilePath);
 
+            // ReSharper disable once using
             using var ftp = CreateFtpClient();
             MultiTryConnect(ftp);
 
@@ -238,6 +229,7 @@ public sealed class FtpTools : CTools
     {
         var remoteFilePath = GetRemotePath(afterRootPath, fileName);
 
+        // ReSharper disable once using
         using var conn = CreateFtpClient();
         MultiTryConnect(conn);
 
@@ -250,6 +242,7 @@ public sealed class FtpTools : CTools
     {
         var remoteFolderPath = GetRemotePath(afterRootPath, dirName);
 
+        // ReSharper disable once using
         using var conn = CreateFtpClient();
         MultiTryConnect(conn);
 
@@ -287,6 +280,7 @@ public sealed class FtpTools : CTools
         {
             var remotePath = GetRemotePath(afterRootPath);
 
+            // ReSharper disable once using
             using var conn = CreateFtpClient();
             MultiTryConnect(conn);
 
@@ -317,6 +311,7 @@ public sealed class FtpTools : CTools
             if (UseConsole)
                 Console.WriteLine($"Delete file {remoteFilePath}");
 
+            // ReSharper disable once using
             using var ftp = CreateFtpClient();
 
             MultiTryConnect(ftp);
@@ -338,6 +333,7 @@ public sealed class FtpTools : CTools
         {
             var remoteDirName = GetRemotePath(afterRootPath, dirName);
 
+            // ReSharper disable once using
             using var ftp = CreateFtpClient();
 
             MultiTryConnect(ftp);
@@ -383,6 +379,7 @@ public sealed class FtpTools : CTools
 
             var remoteToFileName = GetRemotePath(afterRootPath, toFileName);
 
+            // ReSharper disable once using
             using var ftp = CreateFtpClient();
 
             MultiTryConnect(ftp);
@@ -404,6 +401,7 @@ public sealed class FtpTools : CTools
         {
             var remoteFolderName = GetRemotePath(afterRootPath, dirName);
 
+            // ReSharper disable once using
             using var ftp = CreateFtpClient();
 
             MultiTryConnect(ftp);
