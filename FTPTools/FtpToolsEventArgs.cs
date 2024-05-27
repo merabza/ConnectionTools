@@ -11,8 +11,7 @@ public /*open*/ class FtpToolsEventArgs : EventArgs
         Action = action;
     }
 
-    public FtpToolsEventArgs(string objectName, EFtpToolsActions action)
-        : this("", objectName, action)
+    public FtpToolsEventArgs(string objectName, EFtpToolsActions action) : this(string.Empty, objectName, action)
     {
     }
 
