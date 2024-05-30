@@ -4,6 +4,7 @@ namespace FTPTools;
 
 public /*open*/ class FtpToolsEventArgs : EventArgs
 {
+    // ReSharper disable once ConvertToPrimaryConstructor
     public FtpToolsEventArgs(string message, string objectName, EFtpToolsActions action)
     {
         Message = message;
