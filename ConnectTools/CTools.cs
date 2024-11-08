@@ -44,19 +44,19 @@ public /*open*/ class CTools
     public virtual List<MyFileInfo> GetFilesWithInfo(string? afterRootPath, string? searchPattern, bool logError,
         bool fullNames = false)
     {
-        return new List<MyFileInfo>();
+        return [];
     }
 
     public virtual List<string> GetFiles(string? afterRootPath, string? searchPattern, bool logError,
         bool fullNames = false)
     {
-        return new List<string>();
+        return [];
     }
 
     public virtual List<string> GetSubdirectories(string? afterRootPath, string? searchPattern, bool logError,
         bool fullNames = false)
     {
-        return new List<string>();
+        return [];
     }
 
     public virtual bool Delete(string? afterRootPath, string fileName)

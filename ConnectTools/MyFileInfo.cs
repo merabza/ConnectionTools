@@ -2,6 +2,7 @@
 
 public sealed class MyFileInfo
 {
+    // ReSharper disable once ConvertToPrimaryConstructor
     public MyFileInfo(string fileName, long fileLength)
     {
         FileName = fileName;
