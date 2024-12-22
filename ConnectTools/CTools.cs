@@ -104,7 +104,7 @@ public /*open*/ class CTools
     }
 
     public virtual Task<bool> UploadContentToTextFileAsync(string content, string? afterRootPath,
-        string serverSideFileName, CancellationToken cancellationToken)
+        string serverSideFileName, CancellationToken cancellationToken = default)
     {
         return Task.FromResult(false);
     }

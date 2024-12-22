@@ -172,7 +172,7 @@ public sealed class FtpTools : CTools
 
 
     public override Task<bool> UploadContentToTextFileAsync(string content, string? afterRootPath,
-        string serverSideFileName, CancellationToken cancellationToken)
+        string serverSideFileName, CancellationToken cancellationToken = default)
     {
         return Task.FromResult(UploadContentToTextFile(content, afterRootPath, serverSideFileName));
     }
