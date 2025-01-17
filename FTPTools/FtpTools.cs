@@ -1,15 +1,15 @@
-﻿using ConnectTools;
-using FluentFTP;
-using Microsoft.Extensions.Logging;
-using Polly;
-using Polly.Retry;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ConnectTools;
+using FluentFTP;
+using Microsoft.Extensions.Logging;
+using Polly;
+using Polly.Retry;
 using SystemToolsShared;
 
 namespace FTPTools;
@@ -131,8 +131,7 @@ public sealed class FtpTools : CTools
         }
     }
 
-    public override bool UploadContentToTextFile(string content, string? afterRootPath,
-        string serverSideFileName)
+    public override bool UploadContentToTextFile(string content, string? afterRootPath, string serverSideFileName)
     {
         try
         {
@@ -188,12 +187,11 @@ public sealed class FtpTools : CTools
     {
         return afterRootPath == null
             ? StartPath
-            : Path.Combine(StartPath, afterRootPath)
-                .Replace(Path.DirectorySeparatorChar, DirectorySeparatorChar);
+            : Path.Combine(StartPath, afterRootPath).Replace(Path.DirectorySeparatorChar, DirectorySeparatorChar);
     }
 
-    public override bool UploadFile(string pathToFile, string? afterRootPath = null,
-        string? serverSideFileName = null, bool allBytesAtOnce = false)
+    public override bool UploadFile(string pathToFile, string? afterRootPath = null, string? serverSideFileName = null,
+        bool allBytesAtOnce = false)
     {
         var remoteFilePath = GetRemotePath(afterRootPath, serverSideFileName ?? Path.GetFileName(pathToFile));
 
@@ -286,11 +284,9 @@ public sealed class FtpTools : CTools
             // get listing of the files & folders in a specific folder
             result.AddRange(conn.GetListing(remotePath)
                 .Where(item =>
-                    ((dirs && item.Type == FtpObjectType.Directory) ||
-                     (files && item.Type == FtpObjectType.File)) &&
-                    (mask is null || item.Name.FitsMask(mask)))
-                .Select(item => new MyFileInfo(fullNames ? item.FullName : item.Name,
-                    conn.GetFileSize(item.FullName))));
+                    ((dirs && item.Type == FtpObjectType.Directory) || (files && item.Type == FtpObjectType.File)) &&
+                    (mask is null || item.Name.FitsMask(mask))).Select(item =>
+                    new MyFileInfo(fullNames ? item.FullName : item.Name, conn.GetFileSize(item.FullName))));
         }
         catch (Exception e)
         {
