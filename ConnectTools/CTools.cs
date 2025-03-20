@@ -15,7 +15,6 @@ public /*open*/ class CTools
     protected readonly string StartPath;
     protected readonly bool UseConsole;
 
-
     protected CTools(ConnectToolParameters parameters, ILogger logger, bool useConsole = false)
     {
         Parameters = parameters;
@@ -29,7 +28,6 @@ public /*open*/ class CTools
     }
 
     public virtual char DirectorySeparatorChar => '/';
-
 
     public virtual bool DirectoryExists(string? afterRootPath, string dirName)
     {
@@ -74,7 +72,6 @@ public /*open*/ class CTools
     //{
     //    return false;
     //}
-
 
     public virtual bool UploadFile(string pathToFile, string? afterRootPath = null, string? serverSideFileName = null,
         bool allBytesAtOnce = false)
@@ -123,7 +120,6 @@ public /*open*/ class CTools
     {
         return false;
     }
-
 
     public virtual bool FileExists(string? afterRootPath, string fileName)
     {

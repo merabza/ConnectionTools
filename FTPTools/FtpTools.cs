@@ -22,7 +22,6 @@ public sealed class FtpTools : CTools
     {
     }
 
-
     private FtpClient CreateFtpClient()
     {
         // ReSharper disable once DisposableConstructor
@@ -137,7 +136,6 @@ public sealed class FtpTools : CTools
         {
             var remoteFilePath = GetRemotePath(afterRootPath, serverSideFileName);
 
-
             // ReSharper disable once using
             using var ftp = CreateFtpClient();
             MultiTryConnect(ftp);
@@ -169,13 +167,11 @@ public sealed class FtpTools : CTools
         }
     }
 
-
     public override Task<bool> UploadContentToTextFileAsync(string content, string? afterRootPath,
         string serverSideFileName, CancellationToken cancellationToken = default)
     {
         return Task.FromResult(UploadContentToTextFile(content, afterRootPath, serverSideFileName));
     }
-
 
     private string GetRemotePath(string? afterRootPath, string fileName)
     {
