@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CToolsFabric;
 
-public static class ConnectToolsFabric
+public static class ConnectToolsFactory
 {
     public static CTools? CreateConnectToolsByAddress(ConnectToolParameters parameters, ILogger logger,
         bool useConsole = false)
