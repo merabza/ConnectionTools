@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 //using SSHTools;
 
-namespace CToolsFabric;
+namespace CToolsFactory;
 
 public static class ConnectToolsFactory
 {
