@@ -1,4 +1,4 @@
-﻿namespace FTPTools;
+﻿namespace ConnectionTools.FTPTools;
 
 public enum EFtpToolsResult
 {

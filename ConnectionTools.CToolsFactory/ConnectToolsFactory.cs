@@ -1,11 +1,11 @@
 ﻿using System;
-using ConnectTools;
-using FTPTools;
+using ConnectionTools.ConnectTools;
+using ConnectionTools.FTPTools;
 using Microsoft.Extensions.Logging;
 
 //using SSHTools;
 
-namespace CToolsFactory;
+namespace ConnectionTools.CToolsFactory;
 
 public static class ConnectToolsFactory
 {

@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ConnectTools;
+using ConnectionTools.ConnectTools;
 using FluentFTP;
 using Microsoft.Extensions.Logging;
 using Polly;
 using Polly.Retry;
-using SystemToolsShared;
+using SystemTools.SystemToolsShared;
 
-namespace FTPTools;
+namespace ConnectionTools.FTPTools;
 
 public sealed class FtpTools : CTools
 {

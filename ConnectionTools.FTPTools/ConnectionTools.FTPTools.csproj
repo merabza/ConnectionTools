@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SystemTools\SystemToolsShared\SystemToolsShared.csproj" />
-    <ProjectReference Include="..\ConnectTools\ConnectTools.csproj" />
+    <ProjectReference Include="..\..\SystemTools\SystemTools.SystemToolsShared\SystemTools.SystemToolsShared.csproj" />
+    <ProjectReference Include="..\ConnectionTools.ConnectTools\ConnectionTools.ConnectTools.csproj" />
   </ItemGroup>
 
 </Project>

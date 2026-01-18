@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FTPTools;
+namespace ConnectionTools.FTPTools;
 
 public /*open*/ class FtpToolsEventArgs : EventArgs
 {

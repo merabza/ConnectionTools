@@ -1,4 +1,4 @@
-﻿namespace ConnectTools;
+﻿namespace ConnectionTools.ConnectTools;
 
 public sealed class MyFileInfo
 {

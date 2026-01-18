@@ -1,4 +1,4 @@
-﻿namespace FTPTools;
+﻿namespace ConnectionTools.FTPTools;
 
 public sealed class FtpToolsResultEventArgs : FtpToolsEventArgs
 {

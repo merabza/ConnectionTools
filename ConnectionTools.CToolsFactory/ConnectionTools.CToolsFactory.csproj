@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ConnectTools\ConnectTools.csproj" />
-    <ProjectReference Include="..\FTPTools\FTPTools.csproj" />
+    <ProjectReference Include="..\ConnectionTools.ConnectTools\ConnectionTools.ConnectTools.csproj" />
+    <ProjectReference Include="..\ConnectionTools.FTPTools\ConnectionTools.FTPTools.csproj" />
   </ItemGroup>
 
 </Project>
