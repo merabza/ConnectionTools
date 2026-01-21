@@ -59,7 +59,7 @@ public sealed class FtpTools : CTools
             {
                 var attemptNumber = retryArgs.AttemptNumber;
                 Logger.LogError(retryArgs.Outcome.Exception,
-                    "Ftp client Check Connection Failed. currentAttempt: {attemptNumber}", attemptNumber);
+                    "Ftp client Check Connection Failed. currentAttempt: {AttemptNumber}", attemptNumber);
                 return default;
             }
         }).Build();
@@ -76,7 +76,9 @@ public sealed class FtpTools : CTools
             var fileFullName = Path.Combine(folderToDownload, localFileName ?? fileName);
 
             if (UseConsole)
+            {
                 Console.WriteLine($"Download file from {source} to {fileFullName}");
+            }
 
             // ReSharper disable once using
             using var ftp = CreateFtpClient();
@@ -113,7 +115,10 @@ public sealed class FtpTools : CTools
                 if (ftp.DownloadBytes(out var buffer, remoteFilePath))
 
                     //stream.Read(buffer, 0, bufSize);
+                {
                     return Encoding.UTF8.GetString(buffer);
+                }
+
                 Logger.LogError("File did not Downloaded");
                 return null;
             }
@@ -150,7 +155,10 @@ public sealed class FtpTools : CTools
                 //stream.Write(byteArray, 0, byteArray.Length);
 
                 if (ftp.UploadBytes(byteArray, remoteFilePath) == FtpStatus.Success)
+                {
                     return true;
+                }
+
                 Logger.LogError("File did not Uploaded");
                 return false;
             }
@@ -195,7 +203,7 @@ public sealed class FtpTools : CTools
         {
             //if (UseConsole)
             //    Console.WriteLine($"FTPTools UploadFile destination = {remoteFilePath}");
-            Logger.LogInformation("FTPTools UploadFile destination = {remoteFilePath}", remoteFilePath);
+            Logger.LogInformation("FTPTools UploadFile destination = {RemoteFilePath}", remoteFilePath);
 
             // ReSharper disable once using
             using var ftp = CreateFtpClient();
@@ -280,14 +288,16 @@ public sealed class FtpTools : CTools
             // get listing of the files & folders in a specific folder
             result.AddRange(conn.GetListing(remotePath)
                 .Where(item =>
-                    ((dirs && item.Type == FtpObjectType.Directory) || (files && item.Type == FtpObjectType.File)) &&
+                    (dirs && item.Type == FtpObjectType.Directory || files && item.Type == FtpObjectType.File) &&
                     (mask is null || item.Name.FitsMask(mask))).Select(item =>
                     new MyFileInfo(fullNames ? item.FullName : item.Name, conn.GetFileSize(item.FullName))));
         }
         catch (Exception e)
         {
             if (logError)
+            {
                 Logger.LogError(e, "GetDirectoryDetails error");
+            }
         }
 
         return result;
@@ -300,7 +310,9 @@ public sealed class FtpTools : CTools
             var remoteFilePath = GetRemotePath(afterRootPath, fileName);
 
             if (UseConsole)
+            {
                 Console.WriteLine($"Delete file {remoteFilePath}");
+            }
 
             // ReSharper disable once using
             using var ftp = CreateFtpClient();

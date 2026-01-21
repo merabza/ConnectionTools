@@ -21,7 +21,10 @@ public /*open*/ class CTools
         Logger = logger;
         UseConsole = useConsole;
         if (!Uri.TryCreate(Parameters.SiteRootAddress, UriKind.Absolute, out var uri))
+        {
             throw new Exception($"Invalid Site Root Address {Parameters.SiteRootAddress}");
+        }
+
         HostName = uri.Host;
         StartPath = uri.AbsolutePath;
         Port = uri.Port;

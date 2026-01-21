@@ -12,13 +12,15 @@ public static class ConnectToolsFactory
     public static CTools? CreateConnectToolsByAddress(ConnectToolParameters parameters, ILogger logger,
         bool useConsole = false)
     {
-        if (!Uri.TryCreate(parameters.SiteRootAddress, UriKind.Absolute, out var uri))
-            return null;
-
-        return uri.Scheme.ToLower() switch
+        if (!Uri.TryCreate(parameters.SiteRootAddress, UriKind.Absolute, out Uri? uri))
         {
-            "ftp" => new FtpTools(parameters, logger, useConsole),
-            //"ssh" => new SshTools(parameters, logger),
+            return null;
+        }
+
+        return uri.Scheme.ToUpperInvariant() switch
+        {
+            "FTP" => new FtpTools(parameters, logger, useConsole),
+            //"SSH" => new SshTools(parameters, logger),
             _ => null
         };
     }

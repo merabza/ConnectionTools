@@ -1,0 +1,14 @@
+<Solution>
+    <Folder Name="/Solution Items/">
+        <File Path=".editorconfig" />
+        <File Path="Directory.Build.props" />
+        <File Path="Directory.Packages.props" />
+    </Folder>
+    <Project Path="ConnectionTools/ConnectionTools.csproj" />
+    <Folder Name="/SystemTools/">
+        <Project Path="../SystemTools/SystemTools.SystemToolsShared/SystemTools.SystemToolsShared.csproj" />
+    </Folder>
+    <Project Path="ConnectionTools.ConnectTools/ConnectionTools.ConnectTools.csproj" />
+    <Project Path="ConnectionTools.CToolsFactory/ConnectionTools.CToolsFactory.csproj" />
+    <Project Path="ConnectionTools.FTPTools/ConnectionTools.FTPTools.csproj" />
+</Solution>

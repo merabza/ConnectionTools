@@ -17,7 +17,10 @@ public sealed class ConnectToolParameters
     {
         if (string.IsNullOrWhiteSpace(siteRootAddress) || string.IsNullOrWhiteSpace(userName) ||
             string.IsNullOrWhiteSpace(password))
+        {
             return null;
+        }
+
         return new ConnectToolParameters(siteRootAddress, userName, password);
     }
 }

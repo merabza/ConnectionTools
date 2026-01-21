@@ -6,9 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentFTP" Version="53.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.2" />
-    <PackageReference Include="Polly" Version="8.6.5" />
+    <PackageReference Include="FluentFTP" />
+    <PackageReference Include="Polly" />
   </ItemGroup>
 
   <ItemGroup>
