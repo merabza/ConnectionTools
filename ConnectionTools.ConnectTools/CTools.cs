@@ -20,7 +20,7 @@ public /*open*/ class CTools
         Parameters = parameters;
         Logger = logger;
         UseConsole = useConsole;
-        if (!Uri.TryCreate(Parameters.SiteRootAddress, UriKind.Absolute, out var uri))
+        if (!Uri.TryCreate(Parameters.SiteRootAddress, UriKind.Absolute, out Uri? uri))
         {
             throw new Exception($"Invalid Site Root Address {Parameters.SiteRootAddress}");
         }
