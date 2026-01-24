@@ -8,6 +8,9 @@
     <Folder Name="/SystemTools/">
         <Project Path="../SystemTools/SystemTools.SystemToolsShared/SystemTools.SystemToolsShared.csproj" />
     </Folder>
+    <Folder Name="/Tests/">
+        <Project Path="ConnectionTools.ConnectTools.Tests/ConnectionTools.ConnectTools.Tests.csproj" Id="45de6177-cf8b-4a0f-805c-18f943f54215" />
+    </Folder>
     <Project Path="ConnectionTools.ConnectTools/ConnectionTools.ConnectTools.csproj" />
     <Project Path="ConnectionTools.CToolsFactory/ConnectionTools.CToolsFactory.csproj" />
     <Project Path="ConnectionTools.FTPTools/ConnectionTools.FTPTools.csproj" />
