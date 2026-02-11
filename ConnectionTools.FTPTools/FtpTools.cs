@@ -203,7 +203,10 @@ public sealed class FtpTools : CTools
         {
             //if (UseConsole)
             //    Console.WriteLine($"FTPTools UploadFile destination = {remoteFilePath}");
-            Logger.LogInformation("FTPTools UploadFile destination = {RemoteFilePath}", remoteFilePath);
+            if (Logger.IsEnabled(LogLevel.Information))
+            {
+                Logger.LogInformation("FTPTools UploadFile destination = {RemoteFilePath}", remoteFilePath);
+            }
 
             // ReSharper disable once using
             using FtpClient ftp = CreateFtpClient();
