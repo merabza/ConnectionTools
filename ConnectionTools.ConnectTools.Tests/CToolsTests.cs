@@ -89,7 +89,7 @@ public sealed class CToolsTests
         var parameters = CreateValidParameters();
 
         // Act
-        var cTools = CreateCTools(parameters, useConsole: true);
+        var cTools = CreateCTools(parameters, true);
 
         // Assert
         Assert.True(cTools.GetUseConsole());
@@ -167,7 +167,7 @@ public sealed class CToolsTests
         var cTools = CreateCTools();
 
         // Act
-        var result = cTools.GetFilesWithInfo("path", "*.txt", logError: true, fullNames: false);
+        var result = cTools.GetFilesWithInfo("path", "*.txt", true);
 
         // Assert
         Assert.NotNull(result);
@@ -181,7 +181,7 @@ public sealed class CToolsTests
         var cTools = CreateCTools();
 
         // Act
-        var result = cTools.GetFilesWithInfo(null, null, logError: false, fullNames: true);
+        var result = cTools.GetFilesWithInfo(null, null, false, true);
 
         // Assert
         Assert.NotNull(result);
@@ -195,7 +195,7 @@ public sealed class CToolsTests
         var cTools = CreateCTools();
 
         // Act
-        var result = cTools.GetFiles("path", "*.txt", logError: true, fullNames: false);
+        var result = cTools.GetFiles("path", "*.txt", true);
 
         // Assert
         Assert.NotNull(result);
@@ -209,7 +209,7 @@ public sealed class CToolsTests
         var cTools = CreateCTools();
 
         // Act
-        var result = cTools.GetFiles(null, null, logError: false, fullNames: true);
+        var result = cTools.GetFiles(null, null, false, true);
 
         // Assert
         Assert.NotNull(result);
@@ -223,7 +223,7 @@ public sealed class CToolsTests
         var cTools = CreateCTools();
 
         // Act
-        var result = cTools.GetSubdirectories("path", "*", logError: true, fullNames: false);
+        var result = cTools.GetSubdirectories("path", "*", true);
 
         // Assert
         Assert.NotNull(result);
@@ -237,7 +237,7 @@ public sealed class CToolsTests
         var cTools = CreateCTools();
 
         // Act
-        var result = cTools.GetSubdirectories(null, null, logError: false, fullNames: true);
+        var result = cTools.GetSubdirectories(null, null, false, true);
 
         // Assert
         Assert.NotNull(result);
@@ -316,7 +316,7 @@ public sealed class CToolsTests
         var cTools = CreateCTools();
 
         // Act
-        var result = cTools.UploadFile("C:\\temp\\file.txt", "path", "newname.txt", allBytesAtOnce: true);
+        var result = cTools.UploadFile("C:\\temp\\file.txt", "path", "newname.txt", true);
 
         // Assert
         Assert.False(result);
@@ -329,7 +329,7 @@ public sealed class CToolsTests
         var cTools = CreateCTools();
 
         // Act
-        var result = cTools.UploadFile("C:\\temp\\file.txt", null, null, false);
+        var result = cTools.UploadFile("C:\\temp\\file.txt");
 
         // Assert
         Assert.False(result);
@@ -368,7 +368,7 @@ public sealed class CToolsTests
         var cTools = CreateCTools();
 
         // Act
-        var result = cTools.DownloadFile(null, "file.txt", "C:\\downloads", null);
+        var result = cTools.DownloadFile(null, "file.txt", "C:\\downloads");
 
         // Assert
         Assert.False(result);
@@ -560,8 +560,8 @@ public sealed class CToolsTests
     // Test helper class to expose protected members for testing
     private sealed class TestCTools : CTools
     {
-        public TestCTools(ConnectToolParameters parameters, ILogger logger, bool useConsole = false)
-            : base(parameters, logger, useConsole)
+        public TestCTools(ConnectToolParameters parameters, ILogger logger, bool useConsole = false) : base(parameters,
+            logger, useConsole)
         {
         }
 
