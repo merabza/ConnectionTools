@@ -27,10 +27,10 @@ public sealed class CToolsTests
     public void Constructor_WithValidParameters_SetsProperties()
     {
         // Arrange
-        var parameters = CreateValidParameters("https://example.com:8080/mypath");
+        ConnectToolParameters parameters = CreateValidParameters("https://example.com:8080/mypath");
 
         // Act
-        var cTools = CreateCTools(parameters);
+        TestCTools cTools = CreateCTools(parameters);
 
         // Assert
         Assert.Equal("example.com", cTools.GetHostName());
@@ -56,10 +56,10 @@ public sealed class CToolsTests
     public void Constructor_WithHttpUrl_ParsesCorrectly()
     {
         // Arrange
-        var parameters = CreateValidParameters("http://test.com");
+        ConnectToolParameters parameters = CreateValidParameters("http://test.com");
 
         // Act
-        var cTools = CreateCTools(parameters);
+        TestCTools cTools = CreateCTools(parameters);
 
         // Assert
         Assert.Equal("test.com", cTools.GetHostName());
@@ -71,10 +71,10 @@ public sealed class CToolsTests
     public void Constructor_WithHttpsUrl_ParsesCorrectly()
     {
         // Arrange
-        var parameters = CreateValidParameters("https://secure.com");
+        ConnectToolParameters parameters = CreateValidParameters("https://secure.com");
 
         // Act
-        var cTools = CreateCTools(parameters);
+        TestCTools cTools = CreateCTools(parameters);
 
         // Assert
         Assert.Equal("secure.com", cTools.GetHostName());
@@ -86,10 +86,10 @@ public sealed class CToolsTests
     public void Constructor_WithUseConsoleTrue_SetsProperty()
     {
         // Arrange
-        var parameters = CreateValidParameters();
+        ConnectToolParameters parameters = CreateValidParameters();
 
         // Act
-        var cTools = CreateCTools(parameters, true);
+        TestCTools cTools = CreateCTools(parameters, true);
 
         // Assert
         Assert.True(cTools.GetUseConsole());
@@ -99,10 +99,10 @@ public sealed class CToolsTests
     public void DirectorySeparatorChar_ReturnsForwardSlash()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var separator = cTools.DirectorySeparatorChar;
+        char separator = cTools.DirectorySeparatorChar;
 
         // Assert
         Assert.Equal('/', separator);
@@ -112,10 +112,10 @@ public sealed class CToolsTests
     public void DirectoryExists_WithAnyParameters_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.DirectoryExists("some/path", "dirname");
+        bool result = cTools.DirectoryExists("some/path", "dirname");
 
         // Assert
         Assert.False(result);
@@ -125,10 +125,10 @@ public sealed class CToolsTests
     public void DirectoryExists_WithNullPath_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.DirectoryExists(null, "dirname");
+        bool result = cTools.DirectoryExists(null, "dirname");
 
         // Assert
         Assert.False(result);
@@ -138,10 +138,10 @@ public sealed class CToolsTests
     public void CreateDirectory_WithAnyParameters_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.CreateDirectory("some/path", "newdir");
+        bool result = cTools.CreateDirectory("some/path", "newdir");
 
         // Assert
         Assert.False(result);
@@ -151,10 +151,10 @@ public sealed class CToolsTests
     public void CreateDirectory_WithNullPath_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.CreateDirectory(null, "newdir");
+        bool result = cTools.CreateDirectory(null, "newdir");
 
         // Assert
         Assert.False(result);
@@ -164,10 +164,10 @@ public sealed class CToolsTests
     public void GetFilesWithInfo_WithAnyParameters_ReturnsEmptyList()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.GetFilesWithInfo("path", "*.txt", true);
+        List<MyFileInfo> result = cTools.GetFilesWithInfo("path", "*.txt", true);
 
         // Assert
         Assert.NotNull(result);
@@ -178,10 +178,10 @@ public sealed class CToolsTests
     public void GetFilesWithInfo_WithNullParameters_ReturnsEmptyList()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.GetFilesWithInfo(null, null, false, true);
+        List<MyFileInfo> result = cTools.GetFilesWithInfo(null, null, false, true);
 
         // Assert
         Assert.NotNull(result);
@@ -192,10 +192,10 @@ public sealed class CToolsTests
     public void GetFiles_WithAnyParameters_ReturnsEmptyList()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.GetFiles("path", "*.txt", true);
+        List<string> result = cTools.GetFiles("path", "*.txt", true);
 
         // Assert
         Assert.NotNull(result);
@@ -206,10 +206,10 @@ public sealed class CToolsTests
     public void GetFiles_WithNullParameters_ReturnsEmptyList()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.GetFiles(null, null, false, true);
+        List<string> result = cTools.GetFiles(null, null, false, true);
 
         // Assert
         Assert.NotNull(result);
@@ -220,10 +220,10 @@ public sealed class CToolsTests
     public void GetSubdirectories_WithAnyParameters_ReturnsEmptyList()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.GetSubdirectories("path", "*", true);
+        List<string> result = cTools.GetSubdirectories("path", "*", true);
 
         // Assert
         Assert.NotNull(result);
@@ -234,10 +234,10 @@ public sealed class CToolsTests
     public void GetSubdirectories_WithNullParameters_ReturnsEmptyList()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.GetSubdirectories(null, null, false, true);
+        List<string> result = cTools.GetSubdirectories(null, null, false, true);
 
         // Assert
         Assert.NotNull(result);
@@ -248,10 +248,10 @@ public sealed class CToolsTests
     public void Delete_WithAnyParameters_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.Delete("path", "file.txt");
+        bool result = cTools.Delete("path", "file.txt");
 
         // Assert
         Assert.False(result);
@@ -261,10 +261,10 @@ public sealed class CToolsTests
     public void Delete_WithNullPath_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.Delete(null, "file.txt");
+        bool result = cTools.Delete(null, "file.txt");
 
         // Assert
         Assert.False(result);
@@ -274,10 +274,10 @@ public sealed class CToolsTests
     public void DeleteDirectory_WithAnyParameters_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.DeleteDirectory("path", "dirname");
+        bool result = cTools.DeleteDirectory("path", "dirname");
 
         // Assert
         Assert.False(result);
@@ -287,10 +287,10 @@ public sealed class CToolsTests
     public void DeleteDirectory_WithNullPath_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.DeleteDirectory(null, "dirname");
+        bool result = cTools.DeleteDirectory(null, "dirname");
 
         // Assert
         Assert.False(result);
@@ -300,10 +300,10 @@ public sealed class CToolsTests
     public void UploadFile_WithRequiredParameters_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.UploadFile("C:\\temp\\file.txt");
+        bool result = cTools.UploadFile("C:\\temp\\file.txt");
 
         // Assert
         Assert.False(result);
@@ -313,10 +313,10 @@ public sealed class CToolsTests
     public void UploadFile_WithAllParameters_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.UploadFile("C:\\temp\\file.txt", "path", "newname.txt", true);
+        bool result = cTools.UploadFile(@"C:\temp\file.txt", "path", "newname.txt", true);
 
         // Assert
         Assert.False(result);
@@ -326,10 +326,10 @@ public sealed class CToolsTests
     public void UploadFile_WithNullOptionalParameters_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.UploadFile("C:\\temp\\file.txt");
+        bool result = cTools.UploadFile(@"C:\temp\file.txt");
 
         // Assert
         Assert.False(result);
@@ -339,10 +339,10 @@ public sealed class CToolsTests
     public void DownloadFile_WithRequiredParameters_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.DownloadFile("path", "file.txt", "C:\\downloads");
+        bool result = cTools.DownloadFile("path", "file.txt", "C:\\downloads");
 
         // Assert
         Assert.False(result);
@@ -352,10 +352,10 @@ public sealed class CToolsTests
     public void DownloadFile_WithAllParameters_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.DownloadFile("path", "file.txt", "C:\\downloads", "renamed.txt");
+        bool result = cTools.DownloadFile("path", "file.txt", "C:\\downloads", "renamed.txt");
 
         // Assert
         Assert.False(result);
@@ -365,10 +365,10 @@ public sealed class CToolsTests
     public void DownloadFile_WithNullPath_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.DownloadFile(null, "file.txt", "C:\\downloads");
+        bool result = cTools.DownloadFile(null, "file.txt", "C:\\downloads");
 
         // Assert
         Assert.False(result);
@@ -378,10 +378,10 @@ public sealed class CToolsTests
     public void GetTextFileContent_WithAnyParameters_ReturnsNull()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.GetTextFileContent("path", "file.txt");
+        string? result = cTools.GetTextFileContent("path", "file.txt");
 
         // Assert
         Assert.Null(result);
@@ -391,10 +391,10 @@ public sealed class CToolsTests
     public void GetTextFileContent_WithNullPath_ReturnsNull()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.GetTextFileContent(null, "file.txt");
+        string? result = cTools.GetTextFileContent(null, "file.txt");
 
         // Assert
         Assert.Null(result);
@@ -404,10 +404,10 @@ public sealed class CToolsTests
     public void UploadFileToDirectory_WithAnyParameters_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.UploadFileToDirectory("C:\\temp\\file.txt", "target/path");
+        bool result = cTools.UploadFileToDirectory("C:\\temp\\file.txt", "target/path");
 
         // Assert
         Assert.False(result);
@@ -417,10 +417,10 @@ public sealed class CToolsTests
     public void UploadContentToTextFile_WithAnyParameters_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.UploadContentToTextFile("content", "path", "file.txt");
+        bool result = cTools.UploadContentToTextFile("content", "path", "file.txt");
 
         // Assert
         Assert.False(result);
@@ -430,10 +430,10 @@ public sealed class CToolsTests
     public void UploadContentToTextFile_WithNullPath_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.UploadContentToTextFile("content", null, "file.txt");
+        bool result = cTools.UploadContentToTextFile("content", null, "file.txt");
 
         // Assert
         Assert.False(result);
@@ -443,10 +443,10 @@ public sealed class CToolsTests
     public async Task UploadContentToTextFileAsync_WithAnyParameters_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = await cTools.UploadContentToTextFileAsync("content", "path", "file.txt");
+        bool result = await cTools.UploadContentToTextFileAsync("content", "path", "file.txt");
 
         // Assert
         Assert.False(result);
@@ -456,10 +456,10 @@ public sealed class CToolsTests
     public async Task UploadContentToTextFileAsync_WithNullPath_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = await cTools.UploadContentToTextFileAsync("content", null, "file.txt");
+        bool result = await cTools.UploadContentToTextFileAsync("content", null, "file.txt");
 
         // Assert
         Assert.False(result);
@@ -469,11 +469,11 @@ public sealed class CToolsTests
     public async Task UploadContentToTextFileAsync_WithCancellationToken_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
         using var cts = new CancellationTokenSource();
 
         // Act
-        var result = await cTools.UploadContentToTextFileAsync("content", "path", "file.txt", cts.Token);
+        bool result = await cTools.UploadContentToTextFileAsync("content", "path", "file.txt", cts.Token);
 
         // Assert
         Assert.False(result);
@@ -483,10 +483,10 @@ public sealed class CToolsTests
     public void CreateServerSideUser_WithAnyParameter_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.CreateServerSideUser("CompanyName");
+        bool result = cTools.CreateServerSideUser("CompanyName");
 
         // Assert
         Assert.False(result);
@@ -496,10 +496,10 @@ public sealed class CToolsTests
     public void CheckConnection_ReturnsDefault_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.CheckConnection();
+        bool result = cTools.CheckConnection();
 
         // Assert
         Assert.False(result);
@@ -509,10 +509,10 @@ public sealed class CToolsTests
     public void Rename_WithAnyParameters_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.Rename("path", "oldname.txt", "newname.txt");
+        bool result = cTools.Rename("path", "oldname.txt", "newname.txt");
 
         // Assert
         Assert.False(result);
@@ -522,10 +522,10 @@ public sealed class CToolsTests
     public void Rename_WithNullPath_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.Rename(null, "oldname.txt", "newname.txt");
+        bool result = cTools.Rename(null, "oldname.txt", "newname.txt");
 
         // Assert
         Assert.False(result);
@@ -535,10 +535,10 @@ public sealed class CToolsTests
     public void FileExists_WithAnyParameters_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.FileExists("path", "file.txt");
+        bool result = cTools.FileExists("path", "file.txt");
 
         // Assert
         Assert.False(result);
@@ -548,10 +548,10 @@ public sealed class CToolsTests
     public void FileExists_WithNullPath_ReturnsFalse()
     {
         // Arrange
-        var cTools = CreateCTools();
+        TestCTools cTools = CreateCTools();
 
         // Act
-        var result = cTools.FileExists(null, "file.txt");
+        bool result = cTools.FileExists(null, "file.txt");
 
         // Assert
         Assert.False(result);
@@ -565,10 +565,29 @@ public sealed class CToolsTests
         {
         }
 
-        public string GetHostName() => HostName;
-        public string GetStartPath() => StartPath;
-        public int GetPort() => Port;
-        public ConnectToolParameters GetParameters() => Parameters;
-        public bool GetUseConsole() => UseConsole;
+        public string GetHostName()
+        {
+            return HostName;
+        }
+
+        public string GetStartPath()
+        {
+            return StartPath;
+        }
+
+        public int GetPort()
+        {
+            return Port;
+        }
+
+        public ConnectToolParameters GetParameters()
+        {
+            return Parameters;
+        }
+
+        public bool GetUseConsole()
+        {
+            return UseConsole;
+        }
     }
 }
