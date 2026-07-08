@@ -12,10 +12,4 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\ConnectionTools.ConnectTools\ConnectionTools.ConnectTools.csproj" />
-      <ProjectReference Include="..\ConnectionTools.CToolsFactory\ConnectionTools.CToolsFactory.csproj" />
-      <ProjectReference Include="..\ConnectionTools.FTPTools\ConnectionTools.FTPTools.csproj" />
-    </ItemGroup>
-
 </Project>

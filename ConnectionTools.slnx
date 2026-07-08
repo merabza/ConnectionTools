@@ -4,7 +4,6 @@
         <File Path="Directory.Build.props" />
         <File Path="Directory.Packages.props" />
     </Folder>
-    <Project Path="ConnectionTools/ConnectionTools.csproj" />
     <Folder Name="/SystemTools/">
         <Project Path="../SystemTools/SystemTools.SystemToolsShared/SystemTools.SystemToolsShared.csproj" />
     </Folder>
