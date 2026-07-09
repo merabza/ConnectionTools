@@ -3,6 +3,7 @@
     <ItemGroup>
     <PackageReference Include="FluentFTP" />
     <PackageReference Include="Polly" />
+    <PackageReference Include="SystemTools.SystemToolsShared" />
   </ItemGroup>
 
   <ItemGroup>
