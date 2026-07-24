@@ -264,15 +264,21 @@ public sealed class FtpTools : CTools
     public override List<string> GetFiles(string? afterRootPath, string? searchPattern, bool logError,
         bool fullNames = false)
     {
-        return GetDirectoryDetails(afterRootPath, false, true, fullNames, logError, searchPattern)
-            .Select(s => s.FileName).ToList();
+        return
+        [
+            .. GetDirectoryDetails(afterRootPath, false, true, fullNames, logError, searchPattern)
+                .Select(s => s.FileName)
+        ];
     }
 
     public override List<string> GetSubdirectories(string? afterRootPath, string? searchPattern, bool logError,
         bool fullNames = false)
     {
-        return GetDirectoryDetails(afterRootPath, true, false, fullNames, logError, searchPattern)
-            .Select(s => s.FileName).ToList();
+        return
+        [
+            .. GetDirectoryDetails(afterRootPath, true, false, fullNames, logError, searchPattern)
+                .Select(s => s.FileName)
+        ];
     }
 
     private List<MyFileInfo> GetDirectoryDetails(string? afterRootPath, bool dirs, bool files, bool fullNames,
