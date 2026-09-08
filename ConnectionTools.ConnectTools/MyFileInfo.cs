@@ -2,7 +2,6 @@
 
 public sealed class MyFileInfo
 {
-    
     public MyFileInfo(string fileName, long fileLength)
     {
         FileName = fileName;

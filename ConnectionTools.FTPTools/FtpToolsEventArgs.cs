@@ -4,7 +4,6 @@ namespace ConnectionTools.FTPTools;
 
 public /*open*/ class FtpToolsEventArgs : EventArgs
 {
-    
     public FtpToolsEventArgs(string message, string objectName, EFtpToolsActions action)
     {
         Message = message;

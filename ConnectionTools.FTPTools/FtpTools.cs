@@ -16,7 +16,6 @@ namespace ConnectionTools.FTPTools;
 
 public sealed class FtpTools : CTools
 {
-    
     public FtpTools(ConnectToolParameters parameters, ILogger logger, bool useConsole = false) : base(parameters,
         logger, useConsole)
     {
