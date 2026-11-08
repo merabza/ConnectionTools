@@ -3,11 +3,11 @@
     <ItemGroup>
     <PackageReference Include="FluentFTP" />
     <PackageReference Include="Polly" />
-    <PackageReference Include="SystemTools.SystemToolsShared" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ConnectionTools.ConnectTools\ConnectionTools.ConnectTools.csproj" />
+    <ProjectReference Include="..\..\SystemTools\SystemTools.SystemToolsShared\SystemTools.SystemToolsShared.csproj" />
   </ItemGroup>
 
 </Project>
